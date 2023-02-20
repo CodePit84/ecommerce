@@ -15,24 +15,24 @@ class Categories
     
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
-    #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 100)]
+    private $name;
 
-    #[ORM\Column]
-    private ?int $categoryOrder = null;
+    #[ORM\Column(type: 'integer')]
+    private $categoryOrder;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?self $parent = null;
+    private $parent;
 
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
-    private Collection $categories;
+    private $categories;
 
     #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Products::class)]
-    private Collection $products;
+    private $products;
 
     public function __construct()
     {
