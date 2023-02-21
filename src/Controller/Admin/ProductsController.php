@@ -59,8 +59,8 @@ class ProductsController extends AbstractController
             $product->setSlug($slug);
 
             // On arrondit le prix (en le multipliant par 100 car prix "int" en centimes dans bdd)
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice() * 100;
+            // $product->setPrice($prix);
 
             // On stocke les infos dans la bdd
             $em->persist($product);
@@ -90,8 +90,8 @@ class ProductsController extends AbstractController
         $this->denyAccessUnlessGranted('PRODUCT_EDIT', $product);
 
         // On divise le prix par 100
-        $prix = $product->getPrice() / 100;
-        $product->setPrice($prix);
+        // $prix = $product->getPrice() / 100;
+        // $product->setPrice($prix);
 
         // On crée le formulaire
         $productForm = $this->createForm(ProductsFormType::class, $product);
@@ -120,8 +120,8 @@ class ProductsController extends AbstractController
             $product->setSlug($slug);
 
             // On arrondit le prix (en le multipliant par 100 car prix "int" en centimes dans bdd)
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice() * 100;
+            // $product->setPrice($prix);
 
             // On stocke les infos dans la bdd
             $em->persist($product);
@@ -155,7 +155,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/suppression/image/{id}', name: 'delete_image', methods: ['DELETE'])]
-    public function deleteImage(Images $image, Request $request, EntityManagerInterface $em, PictureService $pictureService):JsonResponse
+    public function deleteImage(Images $image, Request $request, EntityManagerInterface $em, PictureService $pictureService): JsonResponse
     {
         // On récupère le contenu de la requête
         $data = json_decode($request->getContent(), true);
@@ -175,7 +175,7 @@ class ProductsController extends AbstractController
             // La suppression a échoué
             return new JsonResponse(['error' => 'Erreur de suppression'], 400);
         }
-        
+
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 }
